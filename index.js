@@ -2,7 +2,12 @@ const Discord = require('discord.js');
 require("dotenv").config();
  
 const client = new Discord.Client({
-    intents: 32767
+    intents: [
+    Discord.Intents.FLAGS.GUILDS,
+    Discord.Intents.FLAGS.GUILD_MESSAGES,
+    Discord.Intents.FLAGS.GUILD_MEMBERS,
+    Discord.Intents.FLAGS.GUILD_VOICE_STATES
+  ] 
 })
 const fs = require('fs')
 var figlet = require('figlet');
