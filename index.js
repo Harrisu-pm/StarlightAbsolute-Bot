@@ -1,5 +1,5 @@
-const Discord = require('discord.js');
-require("dotenv").config();
+const Discord = require('discord.js')
+const config = require('./config.json')
  
 const client = new Discord.Client({
     intents: [
@@ -34,6 +34,15 @@ client.on('ready', () => {
     }
     console.log(data)
   })
-});
+})
+client.on('messageCreate', async message => {
+  if (message.author.bot || !message.guild) return
+  const prefix = config.prefix
+  if (!message.content.startsWith(prefix)) return
+  const args = message.content.slice(prefix.length).trim().split(/ +/g)
+  const command = args.shift().toLowerCase()
+  const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command))
+  if (!cmd) return
+)}
 
-client.login(process.env.TOKEN)
+client.login(config.token)
