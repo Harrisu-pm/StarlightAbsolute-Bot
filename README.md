@@ -1,2 +1,2 @@
 # StarlightAbsolute-Bot
-Starlight Absolute Discord Project
+Belongs to StarlightAbsoluteProject
